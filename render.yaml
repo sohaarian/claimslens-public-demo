@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: claimslens-public-demo
+    runtime: python
+    plan: free
+    autoDeployTrigger: off
+    buildCommand: pip install -r requirements-public.txt
+    startCommand: python claimslens_public_demo.py
+    healthCheckPath: /healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.9
+      - key: CL_PUBLIC_ACK
+        value: synthetic-only
+      - key: CL_SESSION_SECRET
+        generateValue: true
